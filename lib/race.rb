@@ -19,9 +19,9 @@ class Race
         @open
     end
 
-    # def close!
-
-    # end
+    def close!
+        @open = false
+    end
 
     # def winner
 
