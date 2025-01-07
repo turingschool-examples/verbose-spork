@@ -6,7 +6,7 @@ require './lib/election'
 
 RSpec.describe Election do
     before(:each) do
-        @election = Election.new(2000)
+        @election = Election.new("2000")
     end
 
     describe 'initialize' do
@@ -15,7 +15,7 @@ RSpec.describe Election do
         end
 
         it 'can tell year and races within year' do
-            expect(@election.year).to eq(2000)
+            expect(@election.year).to eq("2000")
             expect(@election.races).to eq([])
         end
     end
