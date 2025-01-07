@@ -1,5 +1,6 @@
 require './lib/candidate'
 require './lib/race'
+require './lib/election'
 require 'rspec'
 require 'pry'
 
@@ -7,6 +8,9 @@ require 'pry'
 RSpec.describe Race do
     before(:each) do
         @race = Race.new("Texas Governor")
+        @election = Election.new('2024')
+        @diana = Candidate.new({name: "Diana D", party: :democrat})
+        @roberto = Candidate.new({name: "Roberto R", party: :republican})
     end
 
     it 'exists' do
@@ -29,6 +33,23 @@ RSpec.describe Race do
     end
 
     it '#close!' do
-        expect(@race.close!).to eq(false)
+        @race.close!
+        expect(@race.close!).to eq(true)
     end
+
+    # it '#winner' do
+    #     @race.open?
+    #     expect(@race.winner).to eq(false)
+    #     @election.add_race(@race)
+    #     candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+    #     candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+    #     @election.candidates
+    #     candidate1.vote_for
+    #     candidate1.vote_for
+    #     candidate2.vote_for
+    #     expect(@election.vote_counts).to be_a(Hash)
+    #     expect(@election.vote_counts).to eq({"Diana D"=>2, "Roberto R"=>1})
+    #     @race.close!
+    #     binding.pry
+    # end
 end
