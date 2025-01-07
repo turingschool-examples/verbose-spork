@@ -20,4 +20,13 @@ class Race
     def close!
         @open = false
     end
+
+    def winner
+        return false if @open
+
+        winners = @candidates.find_all { |candidate| candidate.votes == @candidates.max_by(&:votes).votes }
+
+        return winners[0] if winners.size == 1
+        return winners
+    end
 end
