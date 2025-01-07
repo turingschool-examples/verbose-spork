@@ -8,8 +8,8 @@ RSpec.describe Election do
   let(:first_candidate) { instance_double(Candidate, name: 'Diana D', votes: 3) }
   let(:second_candidate) { instance_double(Candidate, name: 'Roberto R', votes: 2) }
   let(:third_candidate) { instance_double(Candidate, name: 'Joe S', votes: 4) }
-  let(:first_race) { instance_double(Race, candidates: [first_candidate, second_candidate]) }
-  let(:second_race) { instance_double(Race, candidates: [third_candidate]) }
+  let(:first_race) { instance_double(Race, candidates: [first_candidate, second_candidate], open?: false) }
+  let(:second_race) { instance_double(Race, candidates: [third_candidate], open?: false) }
 
   describe '#initialize' do
     it { is_expected.to be_instance_of described_class }
@@ -51,6 +51,27 @@ RSpec.describe Election do
       election.add_race second_race
 
       expect(election.vote_counts).to eq({ 'Diana D' => 3, 'Roberto R' => 2, 'Joe S' => 4 })
+    end
+  end
+
+  describe '#winners' do
+    subject(:winners) { election.winners }
+
+    context 'when no races are tied' do
+      it 'gets all winners' do
+        election.add_race first_race
+        election.add_race second_race
+
+        expect(winners).to eq([first_candidate, third_candidate])
+      end
+    end
+
+    context 'when races are tied' do
+      it 'gets only winning candidates' do
+        allow(second_candidate).to receive(:votes).and_return(3)
+
+        expect(winners).to eq([third_candidate])
+      end
     end
   end
 end
