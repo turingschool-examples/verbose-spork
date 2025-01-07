@@ -21,6 +21,6 @@ class Election
     end
 
     def winners
-        @races.find_all { |race| race.winner.class == Candidate }.map(&:winner)
+        @races.find_all { |race| !race.tie? && !race.open? }.map(&:winner)
     end
 end

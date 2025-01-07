@@ -26,11 +26,10 @@ class Race
 
         winners = @candidates.find_all { |candidate| candidate.votes == @candidates.max_by(&:votes).votes }
 
-        return winners[0] if winners.size == 1
-        return winners
+        return winners[0]
     end
 
     def tie? 
-        winner.class == Array
+        @candidates.find_all { |candidate| candidate.votes == @candidates.max_by(&:votes).votes }.size > 1
     end
 end
