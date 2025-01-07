@@ -6,9 +6,9 @@ class Race
     @candidates = []
   end
 
-  def register_candidate(candidate_data)
-    @candidates << candidate_data
-    return candidate_data
+  def register_candidate(candidate)
+    @candidates << candidate
+    return candidate
   end
 
 end
