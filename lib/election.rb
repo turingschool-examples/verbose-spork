@@ -1,23 +1,15 @@
 class Election
-  attr_reader :year, :races
+  attr_reader :year, :races, :candidates
 
   def initialize(year)
     @year = year
     @races = []
+    @candidates = []
   end
 
   def add_race(race)
     @races << race
-  end
-
-  def candidates
-    candidates = []
-    @races.each do |race|
-      @race.candidates.each do |candidate|
-        candidates << candidate
-      end
-    end 
-    return candidates
+    race.candidates.each {|candidate| @candidates.push(candidate)}
   end
 
   def vote_counts
