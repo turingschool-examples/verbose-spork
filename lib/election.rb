@@ -8,4 +8,8 @@ class Election
     @year = year
     @races = []
   end
+
+  def add_race(race)
+    @races << race
+  end
 end
