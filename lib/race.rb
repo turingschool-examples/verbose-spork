@@ -22,9 +22,9 @@ class Race
     end
 
     def winner
-        if open?
-            return false
-            highest_votes = @candidates.map { |candidate| candidate.votes }.max 
-        end
+        return false if open?
+        highest_votes = @candidates.map { |candidate| candidate.votes }.max 
+        winners = @candidates.select { |candidate| candidate.votes == highest_votes }
+        winners.sample.name
     end
 end

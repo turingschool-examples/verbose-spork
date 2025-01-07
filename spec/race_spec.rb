@@ -33,6 +33,17 @@ RSpec.describe Race do
         it "declares a winner!" do 
             expect(@race.winner).to eq(false)
 
+            @candidate1.vote_for
+            @candidate1.vote_for
+            @candidate1.vote_for
+            @candidate1.vote_for
+            @candidate1.vote_for
+            @candidate1.vote_for
+            @candidate2.vote_for
+            @candidate2.vote_for
+            @candidate2.vote_for
+            @candidate2.vote_for
+            
             @race.close!
 
             expect(@race.winner).to eq("Diana D")
