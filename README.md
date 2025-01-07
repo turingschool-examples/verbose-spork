@@ -202,7 +202,7 @@ pry(main)> require './lib/race'
 pry(main)> race = Race.new("Texas Governor")
 => #<Race:0x00007f9edf307688...>
 
-pry(main)> race.open? #boolen whether race is open or not - open by default
+pry(main)> race.open? #boolean whether race is open or not - open by default
 => true
 
 pry(main)> race.close! #close the race - action
