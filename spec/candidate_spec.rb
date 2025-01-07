@@ -14,4 +14,18 @@ RSpec.describe Candidate do
     expect(@diana.party).to eq(:democrat)
   end
 
+  it "can display candidate votes" do
+    expect(@diana.votes).to eq(0) 
+
+    @diana.vote_for
+    @diana.vote_for
+    @diana.vote_for
+
+    expect(@diana.votes).to eq(3)
+
+    @diana.vote_for
+
+    expect(@diana.votes).to eq(4)
+  end
+
 end
