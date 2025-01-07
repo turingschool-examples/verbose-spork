@@ -7,7 +7,6 @@ require 'pry'
 RSpec.describe Race do
     before(:each) do
         @race = Race.new("Texas Governor")
-        
     end
 
     it 'exists' do

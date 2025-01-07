@@ -1,7 +1,6 @@
 require 'pry'
 class Race
-    attr_reader :race_position,
-                :office,
+    attr_reader :office,
                 :candidates
 
     def initialize(office)
