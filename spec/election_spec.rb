@@ -26,7 +26,7 @@ RSpec.describe Election do
       expect(@election.votes_count).to eq({})
     end
 
-    it 'is open by default' do
+    it 'has open pull' do
       expect(@election.open?).to eq(true)
     end
   end
@@ -37,7 +37,6 @@ RSpec.describe Election do
       expect(@election.open?).to eq(false)
     end
   end
-
   describe 'add race' do
     before(:each) do
       @election = Election.new("1554")
@@ -76,7 +75,6 @@ RSpec.describe Election do
     it 'is tie' do
       @election.close!
       @candidate2.vote_for
-      @election.winner
       expect(@election.tie?).to eq(true)
       expect(@election.winners).to eq([])
     end
@@ -109,8 +107,8 @@ RSpec.describe Election do
       @candidate_2.vote_for
 
       @race_3 = Race.new('Chair')
-      @candidate_a = @race_3.register_candidate({name: "Diana D", party: :democrat})
-      @candidate_b = @race_3.register_candidate({name: "Roberto R", party: :republican})
+      @candidate_a = @race_2.register_candidate({name: "Diana D", party: :democrat})
+      @candidate_b = @race_2.register_candidate({name: "Roberto R", party: :republican})
       @election.add_race(@race_3)
       @candidate_a.vote_for
       @candidate_b.vote_for
@@ -120,6 +118,7 @@ RSpec.describe Election do
     end
     
     it 'has winners' do
+      
       expect(@election.winners).to eq([@candidate1, @candidate_2])
     end
   end

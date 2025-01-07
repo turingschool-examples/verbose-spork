@@ -33,6 +33,7 @@ class Election
   def tie?
     @tie
   end
+
   def open?
     @open
   end
