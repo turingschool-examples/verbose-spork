@@ -40,4 +40,40 @@ RSpec.describe Race do
       expect(race.open?).to be false
     end
   end
+
+  describe '#winner' do
+    subject(:winner) { race.winner }
+
+    let(:first_candidate) { race.register_candidate({ name: 'Diana D', party: :democrat }) }
+
+    let(:second_candidate) { race.register_candidate({ name: 'Roberto R', party: :republican }) }
+
+    context 'when the race is open' do
+      it { is_expected.to be false }
+    end
+
+    context 'when the race is closed' do
+      before do
+        2.times do
+          first_candidate.vote_for
+          second_candidate.vote_for
+        end
+        race.close!
+      end
+
+      context 'when the race is not tied' do # rubocop:disable RSpec/NestedGroups
+        it 'gets the race winner' do
+          first_candidate.vote_for
+
+          expect(winner).to eq(first_candidate)
+        end
+      end
+
+      context 'when the race is tied' do # rubocop:disable RSpec/NestedGroups
+        it 'gets the race winner' do
+          expect(winner).to eq([first_candidate, second_candidate])
+        end
+      end
+    end
+  end
 end
