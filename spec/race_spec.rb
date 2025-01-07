@@ -76,4 +76,34 @@ RSpec.describe Race do
       end
     end
   end
+
+  describe '#tie?' do
+    subject(:tie) { race.tie? }
+
+    let(:first_candidate) { race.register_candidate({ name: 'Diana D', party: :democrat }) }
+
+    let(:second_candidate) { race.register_candidate({ name: 'Roberto R', party: :republican }) }
+
+    context 'when the race is open' do
+      it { is_expected.to be false }
+    end
+
+    context 'when the race is closed' do
+      before do
+        2.times do
+          first_candidate.vote_for
+          second_candidate.vote_for
+        end
+        race.close!
+      end
+
+      context 'when the race is not tied' do # rubocop:disable RSpec/NestedGroups
+        it { is_expected.to be false }
+      end
+
+      context 'when the race is tied' do # rubocop:disable RSpec/NestedGroups
+        it { is_expected.to be true }
+      end
+    end
+  end
 end
