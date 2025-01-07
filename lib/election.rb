@@ -11,14 +11,19 @@ class Election
     end
 
     def candidates
-        candidates = []
+        @candidates = []
         @races.each do |race|
-            candidates << race.candidates
+            @candidates << race.candidates
         end
-        candidates.flatten
+        @candidates.flatten
     end
 
-    # def vote_counts
-    #     {}
-    # end
+    def vote_counts
+        vote_count = {}
+        candidates.each do |candidate|
+
+            vote_count[candidate.name.to_sym] = candidate.votes
+        end
+        vote_count
+    end
 end

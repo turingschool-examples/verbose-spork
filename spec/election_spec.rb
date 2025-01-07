@@ -22,7 +22,7 @@ RSpec.describe Election do
         end
     end
 
-    describe 'can check races and candidates' do
+    describe 'can check election information' do
         it 'can add and check races' do
             @election.add_race(@race)
 
@@ -36,6 +36,21 @@ RSpec.describe Election do
             candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
 
             expect(@election.candidates).to eq([candidate1, candidate2])
+        end
+
+        it 'can count votes for each candidate' do
+            @election.add_race(@race)
+
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+
+            expect(@election.vote_counts).to eq({"Diana D": 3, "Roberto R": 2})
         end
     end
 end
