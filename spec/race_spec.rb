@@ -65,6 +65,25 @@ RSpec.describe Race do
             @race.close!
 
             expect(@race.winner).to eq(candidate1)
+            expect(@race.tie?).to eq(false)
+        end
+
+        it 'can tell a tie' do
+
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+
+            @race.close!
+
+            expect(@race.winner).to eq(nil)
+            expect(@race.tie?).to eq(true)
         end
     end
 end
