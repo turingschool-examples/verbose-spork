@@ -1,9 +1,10 @@
 class Race
-    attr_reader :office, :candidates
+    attr_reader :office, :candidates, :open
 
     def initialize(office, open = true)
         @office = office
         @candidates = []
+        @open = open
     end
 
     def register_candidate(candidate_details)

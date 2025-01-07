@@ -39,4 +39,10 @@ RSpec.describe Race do
             expect(candidate2.party).to eq(:republican)
         end
     end
+
+    describe 'can tell status information about race' do
+        it 'can tell if it is an open race' do
+            expect(@race.open?).to eq(true)
+        end
+    end
 end
