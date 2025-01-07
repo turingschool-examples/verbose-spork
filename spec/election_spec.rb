@@ -62,32 +62,36 @@ describe Election do
   end
 
   describe '#winners' do
-    xit 'can display the winners of an election' do
+    it 'can display the winners of an election' do
+      @race.close!
+
       @race2 = Race.new("Minnesota Governor")
       @brock = Candidate.new({name: "Brock L", party: :republican})
       @kane = Candidate.new({name: "Kane W", party: :democrat})
 
       3.times {@brock.vote_for}
-      3.times {@kane.vote_for}
+      2.times {@kane.vote_for}
 
       @race2.register_candidate(@brock)
       @race2.register_candidate(@kane)
+      @race2.close!
 
       @race3 = Race.new("California Governor")
       @arnold = Candidate.new({name: "Arnold S", party: :democrat})
       @linda = Candidate.new({name: "Linda M", party: :republican})
 
-      @race3.register_candidate(@arnold)
-      @race3.register_candidate(@linda)
-
       3.times {@arnold.vote_for}
       2.times {@linda.vote_for}
 
+      @race3.register_candidate(@arnold)
+      @race3.register_candidate(@linda)
+      @race3.close!
+      
       @election.add_race(@race)
       @election.add_race(@race2)
       @election.add_race(@race3)
 
-      expect(@election.winners).to eq([@diana, @arnold])
+      expect(@election.winners).to eq([@diana, @brock, @arnold])
     end
   end
 end
