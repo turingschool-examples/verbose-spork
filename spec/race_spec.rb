@@ -11,5 +11,9 @@ describe Race do
         it 'exists' do
             expect(@race).to be_a(Race)
         end
+
+        it 'has an office' do
+            expect(@race.office).to eq("Texas Governor")
+        end
     end
 end
