@@ -40,10 +40,12 @@ RSpec.describe Election do
     let(:second_candidate) { instance_double(Candidate) }
     let(:third_candidate) { instance_double(Candidate) }
 
-    allow(first_race).to receive(:candidates).and_return([first_candidate, second_candidate])
-    allow(second_race).to receive(:candidates).and_return([third_candidate])
-
     it 'can get all candidates' do
+      election.add_race first_race
+      election.add_race second_race
+      allow(first_race).to receive(:candidates).and_return([first_candidate, second_candidate])
+      allow(second_race).to receive(:candidates).and_return([third_candidate])
+
       expect(election.candidates).to eq([first_candidate, second_candidate, third_candidate])
     end
   end
