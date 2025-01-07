@@ -52,5 +52,22 @@ RSpec.describe Election do
 
             expect(@election.vote_counts).to eq({"Diana D": 3, "Roberto R": 2})
         end
+
+        it 'collects array of race winners' do
+            @election.add_race(@race)
+
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+
+            @race.close!
+
+            expect(@election.winners).to eq([candidate1])
+        end
     end
 end

@@ -1,5 +1,5 @@
 class Race
-    attr_reader :office, :candidates, :open
+    attr_reader :office, :candidates, :open, :winner
 
     def initialize(office, open = true)
         @office = office
@@ -21,6 +21,7 @@ class Race
 
     def close!
         @open = false
+        winner
     end
 
     def winner
@@ -37,12 +38,12 @@ class Race
                     @tie = true
                 end
             end
-            winner = most_voted
+            @winner = most_voted
         else
-            winner = false
+            @winner = false
             @tie = false
         end
-        winner
+        @winner
     end
 
     def tie?
