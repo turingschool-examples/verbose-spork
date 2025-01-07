@@ -318,6 +318,6 @@ pry(main)> election.winners #an array of winners from each race
 pry(main)> candidate2.vote_for
 => 2
 
-pry(main)> election.winners #an array of winners
+pry(main)> election.winners #return one because there was only one runner for race 2
 => [#<Candidate:0x00007f9edf396890...>]
 ```
