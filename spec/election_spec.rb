@@ -5,6 +5,12 @@ require_relative 'spec_helper'
 RSpec.describe Election do
   subject(:election) { described_class.new('2024') }
 
+  let(:first_candidate) { instance_double(Candidate, name: 'Diana D', votes: 3) }
+  let(:second_candidate) { instance_double(Candidate, name: 'Roberto R', votes: 2) }
+  let(:third_candidate) { instance_double(Candidate, name: 'Joe S', votes: 4) }
+  let(:first_race) { instance_double(Race, candidates: [first_candidate, second_candidate]) }
+  let(:second_race) { instance_double(Race, candidates: [third_candidate]) }
+
   describe '#initialize' do
     it { is_expected.to be_instance_of described_class }
 
@@ -22,9 +28,6 @@ RSpec.describe Election do
   end
 
   describe '#add_race' do
-    let(:first_race) { instance_double(Race) }
-    let(:second_race) { instance_double(Race) }
-
     it 'can add races' do
       election.add_race first_race
       election.add_race second_race
@@ -34,19 +37,20 @@ RSpec.describe Election do
   end
 
   describe '#candidates' do
-    let(:first_race) { instance_double(Race) }
-    let(:second_race) { instance_double(Race) }
-    let(:first_candidate) { instance_double(Candidate) }
-    let(:second_candidate) { instance_double(Candidate) }
-    let(:third_candidate) { instance_double(Candidate) }
-
     it 'can get all candidates' do
       election.add_race first_race
       election.add_race second_race
-      allow(first_race).to receive(:candidates).and_return([first_candidate, second_candidate])
-      allow(second_race).to receive(:candidates).and_return([third_candidate])
 
       expect(election.candidates).to eq([first_candidate, second_candidate, third_candidate])
+    end
+  end
+
+  describe '#vote_counts' do
+    it 'can get vote counts' do
+      election.add_race first_race
+      election.add_race second_race
+
+      expect(election.vote_counts).to eq({ 'Diana D' => 3, 'Roberto R' => 2, 'Joe S' => 4 })
     end
   end
 end
