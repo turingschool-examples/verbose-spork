@@ -21,4 +21,10 @@ class Election
       counts[candidate.name] = candidate.votes
     end
   end
+
+  def winners
+    @races.map do |race|
+      race.winner unless race.open? || race.tie?
+    end.compact
+  end
 end
