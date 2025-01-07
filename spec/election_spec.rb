@@ -1,5 +1,4 @@
 require 'spec_helper'
-require './lib/election'
 
 RSpec.describe Election do
   it 'exists and has attributes' do
