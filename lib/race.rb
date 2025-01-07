@@ -29,4 +29,9 @@ class Race
 
     @candidates.max_by(&:votes)
   end
+
+  def tie?
+    votes = @candidates.map(&:votes)
+    !open? && votes.count(votes.max) > 1
+  end
 end
