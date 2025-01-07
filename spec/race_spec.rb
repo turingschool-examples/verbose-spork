@@ -1,5 +1,4 @@
 require 'spec_helper'
-require './lib/race'
 
 RSpec.describe Race do
   it 'exists and has attributes' do

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require './lib/candidate'
 
 RSpec.describe Candidate do
   it 'exists and has attributes' do
