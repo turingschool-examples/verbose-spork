@@ -6,9 +6,9 @@ class Election
         @races = []
     end
 
-    # def add_race
-    #     <<
-    # end
+    def add_race(race)
+        @races << race
+    end
 
     # def candidates
     #     []
