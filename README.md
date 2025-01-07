@@ -101,6 +101,82 @@ You have been contacted by the local government to create a program that helps t
 | #candidates | An array of all `Candidate` objects in the election. |
 | #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
 
+# Election Tracker
+
+## Interaction Pattern
+
+```ruby
+pry(main)> require './lib/candidate'
+=> true
+
+pry(main)> require './lib/race'
+=> true
+
+pry(main)> require './lib/election'
+=> true
+
+pry(main)> election = Election.new("2023")
+=> #<Election:0x00007f9edf307688...>
+
+pry(main)> election.year
+=> "2023"
+
+pry(main)> election.races
+=> []
+
+pry(main)> race1 = Race.new("Texas Governor")
+=> #<Race:0x00007f9edf376c90...>
+
+pry(main)> race2 = Race.new("California Senator")
+=> #<Race:0x00007f9edf386780...>
+
+pry(main)> election.add_race(race1)
+=> [#<Race:0x00007f9edf376c90...>]
+
+pry(main)> election.add_race(race2)
+=> [#<Race:0x00007f9edf376c90...>, #<Race:0x00007f9edf386780...>]
+
+pry(main)> election.races
+=> [#<Race:0x00007f9edf376c90...>, #<Race:0x00007f9edf386780...>]
+
+pry(main)> candidate1 = race1.register_candidate({name: "Diana D", party: :democrat})
+=> #<Candidate:0x00007f9edf376c90...>
+
+pry(main)> candidate2 = race1.register_candidate({name: "Roberto R", party: :republican})
+=> #<Candidate:0x00007f9edf386780...>
+
+pry(main)> candidate3 = race2.register_candidate({name: "Alice A", party: :independent})
+=> #<Candidate:0x00007f9edf396890...>
+
+pry(main)> election.candidates
+=> [#<Candidate:0x00007f9edf376c90...>, #<Candidate:0x00007f9edf386780...>, #<Candidate:0x00007f9edf396890...>]
+
+pry(main)> candidate1.vote_for
+=> 1
+
+pry(main)> candidate1.vote_for
+=> 2
+
+pry(main)> candidate2.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 2
+
+pry(main)> candidate3.vote_for
+=> 3
+
+pry(main)> election.vote_counts
+=> {
+  "Diana D" => 2,
+  "Roberto R" => 1,
+  "Alice A" => 3
+}
+```
+
 
 
 ## Iteration 4
