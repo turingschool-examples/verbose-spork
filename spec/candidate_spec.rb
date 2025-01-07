@@ -18,5 +18,9 @@ describe Candidate do
         it 'has a party' do
             expect(@diana.party).to eq(:democrat)
         end
+
+        it 'starts with 0 votes' do
+            expect(@diana.votes).to eq(0)
+        end
     end
 end
