@@ -25,11 +25,15 @@ describe Election do
     it 'has an array for tracking races' do
       expect(@election.races).to eq([])
     end
+
+    it 'has an array for tracking candidates' do
+      expect(@election.candidates).to eq([])
+    end
   end
 
 
   describe "#add_race" do
-    it 'can add races' do
+    it 'can add a race to the election' do
       @election.add_race(@race)
       expect(@election.races).to eq([@race])
     end
@@ -38,7 +42,9 @@ describe Election do
   describe '#candidates' do
     it 'can display a list of candidates' do
       expect(@race.candidates).to eq([@diana, @roberto])
+
       @election.add_race(@race)
+
       expect(@election.candidates).to eq([@diana, @roberto])
     end
   end
@@ -46,9 +52,42 @@ describe Election do
   describe '#candidates' do
     it 'can display a list of candidates and their votes' do
       @election.add_race(@race)
+      expect(@election.candidates).to eq([@diana, @roberto])
+
       3.times {@diana.vote_for}
       2.times {@roberto.vote_for}
+
       expect(@election.vote_counts).to eq({"Diana D" => 3, "Roberto R" => 2})
+    end
+  end
+
+  describe '#winners' do
+    xit 'can display the winners of an election' do
+      @race2 = Race.new("Minnesota Governor")
+      @brock = Candidate.new({name: "Brock L", party: :republican})
+      @kane = Candidate.new({name: "Kane W", party: :democrat})
+
+      3.times {@brock.vote_for}
+      3.times {@kane.vote_for}
+
+      @race2.register_candidate(@brock)
+      @race2.register_candidate(@kane)
+
+      @race3 = Race.new("California Governor")
+      @arnold = Candidate.new({name: "Arnold S", party: :democrat})
+      @linda = Candidate.new({name: "Linda M", party: :republican})
+
+      @race3.register_candidate(@arnold)
+      @race3.register_candidate(@linda)
+
+      3.times {@arnold.vote_for}
+      2.times {@linda.vote_for}
+
+      @election.add_race(@race)
+      @election.add_race(@race2)
+      @election.add_race(@race3)
+
+      expect(@election.winners).to eq([@diana, @arnold])
     end
   end
 end
