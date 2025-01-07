@@ -20,16 +20,16 @@ RSpec.describe Race do
     end
 
     describe 'candidates running for the race' do
-        xit 'can register candidates' do
-            candidate1 = race.register_candidate({name: "Diana D", party: :democrat})
-            candidate2 = race.register_candidate({name: "Roberto R", party: :republican})
+        it 'can register candidates' do
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
 
             expect(@race.candidates).to eq([candidate1, candidate2])
         end
 
-        xit 'can tell about the candidates' do
-            candidate1 = race.register_candidate({name: "Diana D", party: :democrat})
-            candidate2 = race.register_candidate({name: "Roberto R", party: :republican})
+        it 'can tell about the candidates' do
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
             
             expect(candidate1.class).to eq(Candidate)
             expect(candidate1.name).to eq("Diana D")
