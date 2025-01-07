@@ -47,4 +47,17 @@ class Election
     #Probably a quicker enumerable...I almost feel like I know it...
   end
 
+  def winners()
+    #The IC asks for an array, so this is implemented below.
+    #Wouldn't a hash make more sense though to clearly map a race to a winning candidate (esp. since some will be empty so there is no 1:1 mapping apparent)?
+
+    #Don't think .map enumerable will work here, since there is not a 1:1 correspondence in general
+    winning_candidates = []
+    @races.each do |race|
+      winning_candidates << race.winner() if race.winner()
+    end
+
+    return winning_candidates
+  end
+
 end
