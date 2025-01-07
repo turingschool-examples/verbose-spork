@@ -16,4 +16,16 @@ RSpec.describe Election do
       expect(election.races).to eq([])
     end
   end
+
+  describe '#add_race' do
+    let(:first_race) { instance_double(Race, office: 'Texas Governor') }
+    let(:second_race) { instance_double(Race, office: 'Texas Senator') }
+
+    it 'can add races' do
+      election.add_race first_race
+      election.add_race second_race
+
+      expect(election.races).to eq([first_race, second_race])
+    end
+  end
 end
