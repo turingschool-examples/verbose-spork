@@ -1,0 +1,5 @@
+The first two iterations of this challenge were very familiar to me. I felt like I knew exactly what to do, how to set up the classes and tests, and it went very smoothly. The iteration pathways are incredibly helpful.
+
+Upon reaching iteration 3, I had to slow down a bit. It took a bit more time, but in outlining the expected methods, I was able to put together a steady plan for figuring out what the tests needed to look like. Once I saw it laid out, I got to work and managed without too much difficulty, only having to look up a few things.
+
+Iteration 4 slowed me down quite a bit more. I needed to refresh on how to work nested enumerables, and had to refactor a few times to accomplish the logical pathway I laid out for myself. I needed to look up quite a bit more here, but ultimately felt I was able to navigate the iteration and complete it to a satisfactory degree. I hope so anyhow haha.
