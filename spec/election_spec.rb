@@ -6,6 +6,7 @@ require './lib/election'
 describe Election do
     before do
         @election = Election.new(2024)
+        @race = Race.new("Texas Governor")
     end
 
     describe '#initialze' do
@@ -19,6 +20,12 @@ describe Election do
 
         it 'begins with no races' do
             expect(@election.races).to eq([])
+        end
+    end
+
+    describe '#add_race' do
+        it 'can add a race' do
+            expect(@election.add_race(@race)).to eq([@race])
         end
     end
 end
