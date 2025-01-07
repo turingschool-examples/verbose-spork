@@ -29,8 +29,33 @@ RSpec.describe Race do
     expect(@race.candidates). to eq([@candidate_1, @candidate_2])
   end
 
+  it 'race begins open, and can be closed' do
+    expect(@race.open?()).to eq(true)
 
+    @race.close!()
 
+    expect(@race.open?()).to eq(false)
+  end
 
+  it 'determine winner of a race properly, including no winner if race is still open' do
+    #Probably add a third candidate here for thoroughness...
+    
+    @candidate_1.vote_for
+    @candidate_1.vote_for
+    @candidate_2.vote_for
+    @candidate_2.vote_for
+    @candidate_2.vote_for
+    
+    expect(@race.winner()).to eq(false)
+
+    @race.close!()
+
+    expect(@race.winner()).to eq([@candidate_2])
+
+    #Check it works correctly for a tie:
+    @candidate_1.vote_for
+
+    expect(@race.winner()).to eq([@candidate_1, @candidate_2])
+  end
 
 end
