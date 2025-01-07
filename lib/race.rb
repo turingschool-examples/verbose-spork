@@ -5,4 +5,8 @@ class Race
         @office = office
         @candidates = []
     end
+
+    def register_candidate(info)
+        Candidate.new(info)
+    end
 end
