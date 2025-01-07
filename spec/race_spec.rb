@@ -19,6 +19,10 @@ describe Race do
         it 'begins with no candidates' do
             expect(@race.candidates).to eq([])
         end
+
+        it 'begins open' do
+            expect(@race.open?).to eq(true)
+        end
     end
 
     describe '#register_candidate' do
