@@ -8,6 +8,10 @@ class Election
     @year  
   end
 
+  def races
+    @races
+  end
+
   def add_race(race)
     @races << race
   end
@@ -16,7 +20,7 @@ class Election
     all_candidates = []
     @races.each do |race|
       race.candidates.each do |candidate|
-        all_candidates += [candidate]
+        all_candidates << candidate
       end
     end
     all_candidates
@@ -25,7 +29,6 @@ class Election
   def vote_counts
     counts = {}
     candidates.each do |candidate|
-      
       counts[candidate.name] = candidate.vote_for
     end
     counts
