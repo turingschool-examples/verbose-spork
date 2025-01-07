@@ -15,3 +15,9 @@ end
 # This refactor - follows the single-responsibility principle.
 # initializes /name/party/votes, and has a method to increment votes.
 # diana.votes will return total votes for diana 
+# 
+##candidate.name
+#candidate.class
+#candidate.party
+#
+#

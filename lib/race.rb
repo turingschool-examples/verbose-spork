@@ -3,23 +3,23 @@ require './lib/candidate'
 class Race
   attr_reader :office, :candidates
 
-  def initialize(office)
+  def initialize(office) #just add office during initialization
     @office = office
-    @candidates = []
+    @candidates = [] #empty array to store candidates
     @open = true
   end
 
   def register_candidate(details)
     candidate = Candidate.new(details)
-    @candidates << candidate
+    @candidates << candidate #shovels candidates into the array #race.candidates will return all candidates
     candidate
   end
 
-  def open?
+  def open? 
     @open
   end
 
-  def close!
+  def close! 
     @open = false
   end
 
@@ -28,6 +28,11 @@ class Race
 
     max_votes = @candidates.map(&:votes).max
     @candidates.find { |candidate| candidate.votes == max_votes }
+    #max_votes between candidates 
+    #.map(&:votes) returns an array of votes
+    #.max returns the highest number of votes
+    #.find returns the candidate with the highest number of votes 
+    #{ |candidate| candidate.votes == max_votes } will iterate through the array and return the candidate with the highest number of votes
   end
 
   def tie?
@@ -35,8 +40,10 @@ class Race
 
     max_votes = @candidates.map(&:votes).max
     @candidates.count { |candidate| candidate.votes == max_votes } > 1
+    #for a tie, there must be more than one candidate with the highest number of votes
+    #will print out true if there is a tie
   end
 end
 
-# This refactor ensures that the Race class is simple and follows the single-responsibility principle.
+# refactor ensures ace class is simple - follows the single-responsibility principle.
 # It manages candidates, checks if the race is open, closes the race, determines the winner, and checks for ties.
