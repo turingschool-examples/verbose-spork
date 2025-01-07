@@ -94,12 +94,12 @@ You have been contacted by the local government to create a program that helps t
 
 | Method Name | Return Value |
 | ----------- | ------------ |
-| #new(year)        | An `Election` object that has an attribute of year (as a string). |
-| #year       | The year of the election (string). |
-| #races      | An array of `Race` objects. |
-| #add_race(race)   | An array of `Race` objects. |
-| #candidates | An array of all `Candidate` objects in the election. |
-| #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
+|x #new(year)        | An `Election` object that has an attribute of year (as a string). |
+|x #year       | The year of the election (string). |
+|x #races      | An array of `Race` objects. |
+|x #add_race(race)   | An array of `Race` objects. |
+|x #candidates | An array of all `Candidate` objects in the election. |
+|x #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
 
 
 
@@ -111,10 +111,10 @@ The local government agency has contacted you about compiling addition informati
 
 | Method Name | Return Value |
 | ----------- | ------------ |
-| #open?      | A boolean indicating whether the race is open or not. A race should be open by default. |
-| #close!     | Close the race (should no longer be open). |
-| #winner     | `false` if the race is still open. It should return the candidate with the most votes if not open. If there is a tie, it should return any candidate with the highest number of votes. |
-| #tie?       | A boolean indicating if two or more candidates received the highest number of votes. |
+|x #open?      | A boolean indicating whether the race is open or not. A race should be open by default. |
+|x #close!     | Close the race (should no longer be open). |
+|x #winner     | `false` if the race is still open. It should return the candidate with the most votes if not open. If there is a tie, it should return any candidate with the highest number of votes. |
+|x #tie?       | A boolean indicating if two or more candidates received the highest number of votes. |
 
 Use TDD to implement the following methods on the `Election` class.
 
