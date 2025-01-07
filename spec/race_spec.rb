@@ -15,5 +15,9 @@ describe Race do
         it 'has an office' do
             expect(@race.office).to eq("Texas Governor")
         end
+
+        it 'begins with no candidates' do
+            expect(@race.candidates).to eq([])
+        end
     end
 end
