@@ -29,6 +29,10 @@ describe Candidate do
             3.times { @diana.vote_for }
 
             expect(@diana.votes).to eq(3)
+
+            @diana.vote_for
+
+            expect(@diana.votes).to eq(4)
         end
     end
 end
