@@ -16,4 +16,16 @@ RSpec.describe Race do
       expect(race.candidates).to eq([])
     end
   end
+
+  describe '#register_candidate' do
+    subject(:first_candidate) { race.register_candidate({ name: 'Diana D', party: :democrat }) }
+
+    let(:second_candidate) { race.register_candidate({ name: 'Roberto R', party: :republican }) }
+
+    it { is_expected.to be_instance_of Candidate }
+
+    it 'can add registered candidates' do
+      expect(race.candidates).to eq([first_candidate, second_candidate])
+    end
+  end
 end
