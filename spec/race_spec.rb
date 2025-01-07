@@ -98,6 +98,10 @@ RSpec.describe Race do
       end
 
       context 'when the race is not tied' do # rubocop:disable RSpec/NestedGroups
+        before do
+          first_candidate.vote_for
+        end
+
         it { is_expected.to be false }
       end
 
