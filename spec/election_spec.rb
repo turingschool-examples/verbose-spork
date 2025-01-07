@@ -62,4 +62,19 @@ describe Election do
             expect(votes["Roberto R"]).to eq(4)
         end
     end
+
+    describe '#winners' do
+        it 'can returns the winners of all races' do
+            @election.add_race(@race2)
+            @election.add_race(@race1)
+            @election.add_race(Race.new("race"))
+
+            @prez_candidate1.vote_for
+
+            @race1.close!
+            @race2.close!
+
+            expect(@election.winners).to eq([@prez_candidate1])
+        end
+    end
 end

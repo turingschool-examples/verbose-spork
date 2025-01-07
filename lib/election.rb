@@ -19,4 +19,8 @@ class Election
         candidates.each { |candidate| votes[candidate.name] = candidate.votes }
         votes
     end
+
+    def winners
+        @races.find_all { |race| race.winner.class == Candidate }.map(&:winner)
+    end
 end
