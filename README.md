@@ -15,7 +15,7 @@
 Use TDD to create a `Candidate` class that responds to the following interaction pattern.
 
 ```ruby
-pry(main)> require './lib/candidate'
+require './lib/candidate'
 => true
 
 pry(main)> diana = Candidate.new({name: "Diana D", party: :democrat})
@@ -115,13 +115,13 @@ pry(main)> require './lib/race'
 pry(main)> require './lib/election'
 => true
 
-pry(main)> election = Election.new("2023")
+pry(main)> election = Election.new("2023") #the year of the election during initialization
 => #<Election:0x00007f9edf307688...>
 
-pry(main)> election.year
+pry(main)> election.year #object has an attribute of year as string
 => "2023"
 
-pry(main)> election.races
+pry(main)> election.races #object returns an array for races
 => []
 
 pry(main)> race1 = Race.new("Texas Governor")
@@ -130,7 +130,7 @@ pry(main)> race1 = Race.new("Texas Governor")
 pry(main)> race2 = Race.new("California Senator")
 => #<Race:0x00007f9edf386780...>
 
-pry(main)> election.add_race(race1)
+pry(main)> election.add_race(race1) #add race to array
 => [#<Race:0x00007f9edf376c90...>]
 
 pry(main)> election.add_race(race2)
@@ -148,7 +148,7 @@ pry(main)> candidate2 = race1.register_candidate({name: "Roberto R", party: :rep
 pry(main)> candidate3 = race2.register_candidate({name: "Alice A", party: :independent})
 => #<Candidate:0x00007f9edf396890...>
 
-pry(main)> election.candidates
+pry(main)> election.candidates #an array of all candidate objects in the election
 => [#<Candidate:0x00007f9edf376c90...>, #<Candidate:0x00007f9edf386780...>, #<Candidate:0x00007f9edf396890...>]
 
 pry(main)> candidate1.vote_for
@@ -169,7 +169,7 @@ pry(main)> candidate3.vote_for
 pry(main)> candidate3.vote_for
 => 3
 
-pry(main)> election.vote_counts
+pry(main)> election.vote_counts #a hash with each candidate's name as a key and their count of votes as the value
 => {
   "Diana D" => 2,
   "Roberto R" => 1,
