@@ -21,7 +21,6 @@ class Election
     def vote_counts
         vote_count = {}
         candidates.each do |candidate|
-
             vote_count[candidate.name.to_sym] = candidate.votes
         end
         vote_count
