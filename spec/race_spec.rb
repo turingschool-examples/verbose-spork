@@ -15,6 +15,10 @@ RSpec.describe Race do
     it 'has no candidates' do
       expect(race.candidates).to eq([])
     end
+
+    it 'is open' do
+      expect(race.open?).to be true
+    end
   end
 
   describe '#register_candidate' do
