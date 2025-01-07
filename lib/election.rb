@@ -16,4 +16,12 @@ class Election
   def candidates
     @races.map(&:candidates).flatten
   end
+
+  def vote_counts
+    counts = {}
+    candidates.each do |candidate|
+      counts[candidate.name] = candidate.votes
+    end
+    counts
+  end
 end
