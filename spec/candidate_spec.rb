@@ -20,4 +20,14 @@ RSpec.describe Candidate do
       expect(diana.votes).to eq(0)
     end
   end
+
+  describe '#vote_for' do
+    it 'can add votes' do
+      4.times do
+        diana.vote_for
+      end
+
+      expect(diana.votes).to eq(4)
+    end
+  end
 end
