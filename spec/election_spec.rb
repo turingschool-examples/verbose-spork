@@ -8,8 +8,24 @@ RSpec.describe Election do
   let(:first_candidate) { instance_double(Candidate, name: 'Diana D', votes: 3) }
   let(:second_candidate) { instance_double(Candidate, name: 'Roberto R', votes: 2) }
   let(:third_candidate) { instance_double(Candidate, name: 'Joe S', votes: 4) }
-  let(:first_race) { instance_double(Race, candidates: [first_candidate, second_candidate], open?: false) }
-  let(:second_race) { instance_double(Race, candidates: [third_candidate], open?: false) }
+  let(:first_race) do
+    instance_double(
+      Race,
+      candidates: [first_candidate, second_candidate],
+      open?: false,
+      tie?: false,
+      winner: first_candidate
+    )
+  end
+  let(:second_race) do
+    instance_double(
+      Race,
+      candidates: [third_candidate],
+      open?: false,
+      tie?: false,
+      winner: third_candidate
+    )
+  end
 
   describe '#initialize' do
     it { is_expected.to be_instance_of described_class }
@@ -68,7 +84,9 @@ RSpec.describe Election do
 
     context 'when races are tied' do
       it 'gets only winning candidates' do
-        allow(second_candidate).to receive(:votes).and_return(3)
+        election.add_race first_race
+        election.add_race second_race
+        allow(first_race).to receive(:tie?).and_return true
 
         expect(winners).to eq([third_candidate])
       end
