@@ -1,0 +1,5 @@
+require 'pry'
+require 'rspec'
+require './lib/candidate.rb'
+require './lib/election.rb'
+require './lib/race.rb'
