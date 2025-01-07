@@ -39,4 +39,51 @@ RSpec.describe Race do
             expect(candidate2.party).to eq(:republican)
         end
     end
+
+    describe 'can tell status information about race' do
+        it 'can tell if it is an open race' do
+            expect(@race.open?).to eq(true)
+        end
+
+        it 'can close a race' do
+            @race.close!
+
+            expect(@race.open?).to eq(false)
+        end
+
+        it 'can tell winner' do
+
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+
+            @race.close!
+
+            expect(@race.winner).to eq(candidate1)
+            expect(@race.tie?).to eq(false)
+        end
+
+        it 'can tell a tie' do
+
+            candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+            candidate2 = @race.register_candidate({name: "Roberto R", party: :republican})
+
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate1.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+            candidate2.vote_for
+
+            @race.close!
+
+            expect(@race.winner).to eq(nil)
+            expect(@race.tie?).to eq(true)
+        end
+    end
 end
