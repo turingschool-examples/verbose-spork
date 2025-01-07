@@ -312,12 +312,12 @@ pry(main)> race1.close!
 pry(main)> race2.close!
 => false
 
-pry(main)> election.winners
+pry(main)> election.winners #an array of winners from each race
 => [#<Candidate:0x00007f9edf376c90...>, #<Candidate:0x00007f9edf396890...>]
 
 pry(main)> candidate2.vote_for
 => 2
 
-pry(main)> election.winners
+pry(main)> election.winners #an array of winners
 => [#<Candidate:0x00007f9edf396890...>]
 ```
