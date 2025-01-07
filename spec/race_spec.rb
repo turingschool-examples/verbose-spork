@@ -6,6 +6,7 @@ RSpec.describe Race do
     @race = Race.new("Texas Governor")
     @candidate_1 = @race.register_candidate({name: "Diana D", party: :democrat})
     @candidate_2 = @race.register_candidate({name: "Roberto R", party: :republican})
+    @candidate_3 = @race.register_candidate({name: "Sabine Hossenfelder", party: :independent})
   end
 
   it 'exists' do
@@ -13,12 +14,15 @@ RSpec.describe Race do
   end
 
   it 'can initialize correctly' do
-    expect(@race.office).to eq("Texas Governor")
-    expect(@race.candidates).to eq([])    #Fix this - already registered above
+    #Need a new race here to have cleared array since @candidate_1 and 2 are already registered in before(:each)
+    race_2 = Race.new("California State Auditor")
+
+    expect(race_2.office).to eq("California State Auditor")
+    expect(race_2.candidates).to eq([])
   end
 
   it 'can register candidates, with correct object type etc.' do
-    expect(@candidate_1).to be_a(Candidate)   #Equivalent to checking its class via '.class'
+    expect(@candidate_1).to be_a(Candidate)
     expect(@candidate_1.name).to eq("Diana D")
     expect(@candidate_1.party).to eq(:democrat)
 
@@ -38,30 +42,25 @@ RSpec.describe Race do
   end
 
   it 'determine winner of a race properly, including no winner if race is still open' do
-    #Probably add a third candidate here for thoroughness...
-    
     @candidate_1.vote_for
     @candidate_1.vote_for
     @candidate_2.vote_for
     @candidate_2.vote_for
     @candidate_2.vote_for
+    @candidate_3.vote_for
+    @candidate_3.vote_for
     
     expect(@race.winner()).to eq(false)
 
     @race.close!()
 
-    expect(@race.winner()).to eq([@candidate_2])
+    expect(@race.winner()).to eq(@candidate_2)
 
-    #Check if it updates correctly e.g. for a recount:
-    @candidate_1.vote_for
-    @candidate_1.vote_for
+    #Check if it updates correctly e.g. for a recount after polls are closed:
+    @candidate_3.vote_for
+    @candidate_3.vote_for
 
-    expect(@race.winner()).to eq([@candidate_1])
-
-    #Check it works correctly for a tie:
-    @candidate_1.vote_for
-
-    expect(@race.winner()).to eq([@candidate_1, @candidate_2])
+    expect(@race.winner()).to eq(@candidate_3)
   end
 
   it 'determines if a tie has occurred' do
