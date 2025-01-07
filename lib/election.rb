@@ -19,17 +19,11 @@ class Election
 
   def vote_counts
     counts = {}
-    candidates.each do |candidate|
-      counts[candidate.name] = candidate.votes
-    end
+    candidates.each { |candidate| counts[candidate.name] = candidate.votes }
     counts
   end
 
   def winners
-    winners = []
-    @races.each do |race|
-      winners << race.winner unless race.open? || race.tie?
-    end
-    winners
+    @races.reject { |race| race.open? || race.tie? }.map(&:winner)
   end
 end
