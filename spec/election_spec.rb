@@ -12,5 +12,9 @@ describe Election do
         it 'exists' do
             expect(@election).to be_a(Election)
         end
+
+        it 'has a year' do
+            expect(@election.year).to eq(2024)
+        end
     end
 end
