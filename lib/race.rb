@@ -1,7 +1,7 @@
 class Race
     attr_reader :office, :candidates
 
-    def initialize(office)
+    def initialize(office, open = true)
         @office = office
         @candidates = []
     end
@@ -13,4 +13,20 @@ class Race
 
         new_candidate
     end
+
+    def open?
+        @open
+    end
+
+    # def close!
+
+    # end
+
+    # def winner
+
+    # end
+
+    # def tie?
+
+    # end
 end
