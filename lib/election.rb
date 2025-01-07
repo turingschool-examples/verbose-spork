@@ -24,4 +24,12 @@ class Election
     end
     counts
   end
+
+  def winners
+    winners = []
+    @races.each do |race|
+      winners << race.winner unless race.open? || race.tie?
+    end
+    winners
+  end
 end
