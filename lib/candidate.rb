@@ -1,3 +1,5 @@
+
+
 class Candidate
   attr_reader :name,
               :party,

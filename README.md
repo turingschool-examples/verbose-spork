@@ -94,12 +94,12 @@ You have been contacted by the local government to create a program that helps t
 
 | Method Name | Return Value |
 | ----------- | ------------ |
-| #new(year)        | An `Election` object that has an attribute of year (as a string). |
-| #year       | The year of the election (string). |
-| #races      | An array of `Race` objects. |
-| #add_race(race)   | An array of `Race` objects. |
-| #candidates | An array of all `Candidate` objects in the election. |
-| #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
+|x #new(year)        | An `Election` object that has an attribute of year (as a string). |
+|x #year       | The year of the election (string). |
+|x #races      | An array of `Race` objects. |
+|x #add_race(race)   | An array of `Race` objects. |
+|x #candidates | An array of all `Candidate` objects in the election. |
+|x #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
 
 
 
