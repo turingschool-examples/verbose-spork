@@ -10,9 +10,13 @@ class Election
         @races << race
     end
 
-    # def candidates
-    #     []
-    # end
+    def candidates
+        candidates = []
+        @races.each do |race|
+            candidates << race.candidates
+        end
+        candidates.flatten
+    end
 
     # def vote_counts
     #     {}
