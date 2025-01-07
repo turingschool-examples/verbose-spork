@@ -70,8 +70,8 @@ RSpec.describe Race do
       end
 
       context 'when the race is tied' do # rubocop:disable RSpec/NestedGroups
-        it 'gets the race winner' do
-          expect(winner).to eq([first_candidate, second_candidate])
+        it 'picks the race winner' do
+          expect(winner).to eq(first_candidate)
         end
       end
     end
