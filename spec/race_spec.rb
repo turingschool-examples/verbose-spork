@@ -32,4 +32,12 @@ RSpec.describe Race do
       expect(race.candidates).to eq([first_candidate, second_candidate])
     end
   end
+
+  describe '#close!' do
+    it 'can close a race' do
+      race.close!
+
+      expect(race.open?).to be false
+    end
+  end
 end
