@@ -28,4 +28,11 @@ RSpec.describe Race do
     expect(candidate2.party).to eq(:republican)
   end
 
+  it "displays candidates in the candidates array" do
+    candidate1 = @race.register_candidate!({name: "Diana D", party: :democrat})
+    candidate2 = @race.register_candidate!({name: "Roberto R", party: :republican})
+
+    expect(@race.candidates).to eq([candidate1, candidate2]) 
+  end
+
 end
