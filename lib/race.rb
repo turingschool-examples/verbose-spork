@@ -31,7 +31,6 @@ class Race
   end
 
   def tie?
-    votes = @candidates.map(&:votes)
-    !open? && votes.count(votes.max) > 1
+    !open? && @candidates.map(&:votes).count(winner.votes) > 1
   end
 end
