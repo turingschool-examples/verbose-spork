@@ -15,7 +15,7 @@
 Use TDD to create a `Candidate` class that responds to the following interaction pattern.
 
 ```ruby
-pry(main)> require './lib/candidate'
+require './lib/candidate'
 => true
 
 pry(main)> diana = Candidate.new({name: "Diana D", party: :democrat})
@@ -101,6 +101,82 @@ You have been contacted by the local government to create a program that helps t
 | #candidates | An array of all `Candidate` objects in the election. |
 | #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
 
+# Election Tracker
+
+## Interaction Pattern
+
+```ruby
+pry(main)> require './lib/candidate'
+=> true
+
+pry(main)> require './lib/race'
+=> true
+
+pry(main)> require './lib/election'
+=> true
+
+pry(main)> election = Election.new("2023") #the year of the election during initialization
+=> #<Election:0x00007f9edf307688...>
+
+pry(main)> election.year #object has an attribute of year as string
+=> "2023"
+
+pry(main)> election.races #object returns an array for races
+=> []
+
+pry(main)> race1 = Race.new("Texas Governor")
+=> #<Race:0x00007f9edf376c90...>
+
+pry(main)> race2 = Race.new("California Senator")
+=> #<Race:0x00007f9edf386780...>
+
+pry(main)> election.add_race(race1) #add race to array
+=> [#<Race:0x00007f9edf376c90...>]
+
+pry(main)> election.add_race(race2)
+=> [#<Race:0x00007f9edf376c90...>, #<Race:0x00007f9edf386780...>]
+
+pry(main)> election.races
+=> [#<Race:0x00007f9edf376c90...>, #<Race:0x00007f9edf386780...>]
+
+pry(main)> candidate1 = race1.register_candidate({name: "Diana D", party: :democrat})
+=> #<Candidate:0x00007f9edf376c90...>
+
+pry(main)> candidate2 = race1.register_candidate({name: "Roberto R", party: :republican})
+=> #<Candidate:0x00007f9edf386780...>
+
+pry(main)> candidate3 = race2.register_candidate({name: "Alice A", party: :independent})
+=> #<Candidate:0x00007f9edf396890...>
+
+pry(main)> election.candidates #an array of all candidate objects in the election
+=> [#<Candidate:0x00007f9edf376c90...>, #<Candidate:0x00007f9edf386780...>, #<Candidate:0x00007f9edf396890...>]
+
+pry(main)> candidate1.vote_for
+=> 1
+
+pry(main)> candidate1.vote_for
+=> 2
+
+pry(main)> candidate2.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 2
+
+pry(main)> candidate3.vote_for
+=> 3
+
+pry(main)> election.vote_counts #a hash with each candidate's name as a key and their count of votes as the value
+=> {
+  "Diana D" => 2,
+  "Roberto R" => 1,
+  "Alice A" => 3
+}
+```
+
 
 
 ## Iteration 4
@@ -116,6 +192,58 @@ The local government agency has contacted you about compiling addition informati
 | #winner     | `false` if the race is still open. It should return the candidate with the most votes if not open. If there is a tie, it should return any candidate with the highest number of votes. |
 | #tie?       | A boolean indicating if two or more candidates received the highest number of votes. |
 
+```ruby
+pry(main)> require './lib/candidate'
+=> true
+
+pry(main)> require './lib/race'
+=> true
+
+pry(main)> race = Race.new("Texas Governor")
+=> #<Race:0x00007f9edf307688...>
+
+pry(main)> race.open? #boolean whether race is open or not - open by default
+=> true
+
+pry(main)> race.close! #close the race - action
+=> false
+
+pry(main)> race.open? #recheck
+=> false
+
+pry(main)> candidate1 = race.register_candidate({name: "Diana D", party: :democrat})
+=> #<Candidate:0x00007f9edf376c90...>
+
+pry(main)> candidate2 = race.register_candidate({name: "Roberto R", party: :republican})
+=> #<Candidate:0x00007f9edf386780...>
+
+pry(main)> candidate1.vote_for
+=> 1
+
+pry(main)> candidate1.vote_for
+=> 2
+
+pry(main)> candidate2.vote_for
+=> 1
+
+pry(main)> race.winner #false if open/return candidate with most votes if not open/if tie return any candidate with highest number of votes
+=> false #should return Diana with 2 votes
+
+pry(main)> race.close! #close the race
+
+pry(main)> race.winner
+=> #<Candidate:0x00007f9edf376c90...>
+
+pry(main)> race.tie? #boolean if two or more candidates received the highest number of votes
+=> false
+
+pry(main)> candidate2.vote_for
+=> 2
+
+pry(main)> race.tie? #fixing the election after its closed 
+=> true
+```
+
 Use TDD to implement the following methods on the `Election` class.
 
 Additionally, the local government would like you to expand the information they have about their elections.
@@ -124,3 +252,72 @@ Additionally, the local government would like you to expand the information they
 | ----------- | ------------ |
 | #winners    | An array of the `Candidate` objects that represents the winner from each race. If the race is a tie or is still open, no winner should be returned for that race. |
 
+## Interaction Pattern
+
+```ruby
+pry(main)> require './lib/candidate'
+=> true
+
+pry(main)> require './lib/race'
+=> true
+
+pry(main)> require './lib/election'
+=> true
+
+pry(main)> election = Election.new("2023")
+=> #<Election:0x00007f9edf307688...>
+
+pry(main)> race1 = Race.new("Texas Governor")
+=> #<Race:0x00007f9edf376c90...>
+
+pry(main)> race2 = Race.new("California Senator")
+=> #<Race:0x00007f9edf386780...>
+
+pry(main)> election.add_race(race1)
+=> [#<Race:0x00007f9edf376c90...>]
+
+pry(main)> election.add_race(race2)
+=> [#<Race:0x00007f9edf376c90...>, #<Race:0x00007f9edf386780...>]
+
+pry(main)> candidate1 = race1.register_candidate({name: "Diana D", party: :democrat})
+=> #<Candidate:0x00007f9edf376c90...>
+
+pry(main)> candidate2 = race1.register_candidate({name: "Roberto R", party: :republican})
+=> #<Candidate:0x00007f9edf386780...>
+
+pry(main)> candidate3 = race2.register_candidate({name: "Alice A", party: :independent})
+=> #<Candidate:0x00007f9edf396890...>
+
+pry(main)> candidate1.vote_for
+=> 1
+
+pry(main)> candidate1.vote_for
+=> 2
+
+pry(main)> candidate2.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 1
+
+pry(main)> candidate3.vote_for
+=> 2
+
+pry(main)> candidate3.vote_for
+=> 3
+
+pry(main)> race1.close!
+=> false
+
+pry(main)> race2.close!
+=> false
+
+pry(main)> election.winners #an array of winners from each race
+=> [#<Candidate:0x00007f9edf376c90...>, #<Candidate:0x00007f9edf396890...>]
+
+pry(main)> candidate2.vote_for
+=> 2
+
+pry(main)> election.winners #return one because there was only one runner for race 2
+=> [#<Candidate:0x00007f9edf396890...>]
+```
