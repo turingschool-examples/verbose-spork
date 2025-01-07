@@ -25,7 +25,7 @@ class Election
   def vote_counts
     counts = {}
     candidates.each do |candidate|
-      # Assuming `candidate` has a method `votes` that returns the number of votes.
+      
       counts[candidate.name] = candidate.vote_for
     end
     counts
