@@ -24,4 +24,45 @@ RSpec.describe Race do
 
     expect(race.candidates).to eq([candidate1, candidate2])
   end
+
+  it 'can check if race is open and close it' do
+    race = Race.new("Texas Governor")
+
+    expect(race.open?).to eq(true)
+
+    race.close!
+
+    expect(race.open?).to eq(false)
+  end
+
+  it 'can determine the winner' do
+    race = Race.new("Texas Governor")
+    candidate1 = race.register_candidate({name: "Diana D", party: :democrat})
+    candidate2 = race.register_candidate({name: "Roberto R", party: :republican})
+
+    candidate1.vote_for
+    candidate1.vote_for
+    candidate2.vote_for
+
+    expect(race.winner).to eq(false)
+
+    race.close!
+
+    expect(race.winner).to eq(candidate1)
+  end
+
+  it 'can determine if there is a tie' do
+    race = Race.new("Texas Governor")
+    candidate1 = race.register_candidate({name: "Diana D", party: :democrat})
+    candidate2 = race.register_candidate({name: "Roberto R", party: :republican})
+
+    candidate1.vote_for
+    candidate2.vote_for
+
+    expect(race.tie?).to eq(false)
+
+    race.close!
+
+    expect(race.tie?).to eq(true)
+  end
 end
