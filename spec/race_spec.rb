@@ -26,6 +26,27 @@ RSpec.describe Race do
     end
 
     it 'has a winner' do
-        
+        candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+        candidate2 = @race.register_candidate({name: "Willy B", party: :democrat})
+        candidate1.vote_for
+        candidate2.vote_for
+        expect(candidate1.votes).to eq(1)
+        expect(candidate2.votes).to eq(1)
+        expect(@race.open).to eq(true)
+        expect(@race.winner).to eq("the race continues!")
+        candidate1.vote_for
+        @race.close!
+        expect(@race.open).to eq(false)
+        expect(@race.winner).to eq("Winner: Diana D with 2 votes!")
     end
+
+    # it 'can result in a tie' do
+    #     candidate1 = @race.register_candidate({name: "Diana D", party: :democrat})
+    #     candidate2 = @race.register_candidate({name: "Willy B", party: :democrat})
+    #     candidate1.vote_for
+    #     candidate2.vote_for
+    #     expect(candidate1.votes).to eq(1)
+    #     expect(candidate2.votes).to eq(1)
+    #     expect(@race.tie?).to eq("it's a tie!")
+    # end
 end

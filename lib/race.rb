@@ -24,10 +24,20 @@ class Race
         @open = false
     end
 
-    def winner(false)
-        if @open = false
-            true
-            @candidates.max_by{ |candidate| candidate[:votes]}
+    def winner
+        if @open == false
+            winner = @candidates.max_by(&:votes)
+            p "Winner: #{winner.name} with #{winner.votes} votes!"
+        else
+            p "the race continues!"
         end
     end
+
+#     def tie?
+#         if @candidates.max_by(&:votes) > 1
+#             p "it's a tie!"
+#         else
+#             winner
+#         end
+#     end
 end
