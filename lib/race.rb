@@ -13,4 +13,12 @@ class Race
         @candidates << candidate
         candidate
     end
+
+    def open?
+        @open = true
+    end
+
+    def close!
+        @open = false
+    end
 end
