@@ -52,10 +52,30 @@ RSpec.describe Race do
 
     expect(@race.winner()).to eq([@candidate_2])
 
+    #Check if it updates correctly e.g. for a recount:
+    @candidate_1.vote_for
+    @candidate_1.vote_for
+
+    expect(@race.winner()).to eq([@candidate_1])
+
     #Check it works correctly for a tie:
     @candidate_1.vote_for
 
     expect(@race.winner()).to eq([@candidate_1, @candidate_2])
+  end
+
+  it 'determines if a tie has occurred' do
+    @candidate_1.vote_for
+    @candidate_1.vote_for
+    @candidate_2.vote_for
+    @candidate_2.vote_for
+    @candidate_2.vote_for
+
+    expect(@race.tie?()).to eq(false)
+
+    @candidate_1.vote_for
+
+    expect(@race.tie?()).to eq(true)
   end
 
 end

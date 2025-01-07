@@ -26,15 +26,29 @@ class Race
   end
 
   def winner()
-    #Return false if race open; if race closed, return array of candidate(s) with highest vote total(s)
+    #Return false if race open; if race closed, return any candidate with the highest vote total
+    #NOTE: will only return ONE candidate with highest votes (i.e. will not find ALL candidates if there is a tie)
     return false if @is_open
 
-    #Probably use max enumerable here... (and remember <=> weirdness)
-    @candidates.max(1) do |candidate|
-      candidate.votes
+    #Probably use max enumerable here... (and remember <=> weirdness).  Maybe just use max_by?
+    @candidates.max do |candidate1, candidate2|
+      candidate1.votes <=> candidate2.votes
+    end
+  end
+
+  def tie?()
+    #Use max enumerable to find multiple highest votes candidates:
+    candidates_list = @candidates.max(2) do |candidate1, candidate2|
+      candidate1.votes <=> candidate2.votes
     end
 
-    #PROBLEM: max(n) will return n highest values, even if they're not all tied.  Crap...might have to make my own enumerable...
+    #There is a tie if the top two elements returned have identical votes
+    return candidates_list[0].votes == candidates_list[1].votes
+
+    # max_votes = 0
+    # max_votes_candidate = nil
+    # @candidates.each do |candidate|
+    #   if candidate.votes >
   end
 
 end
