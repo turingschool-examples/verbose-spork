@@ -23,4 +23,12 @@ describe Candidate do
             expect(@diana.votes).to eq(0)
         end
     end
+
+    describe '#vote_for' do
+        it 'can be voted for' do
+            3.times { @diana.vote_for }
+
+            expect(@diana.votes).to eq(3)
+        end
+    end
 end
