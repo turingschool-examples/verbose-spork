@@ -9,9 +9,14 @@ class Race
   def initialize(office)
     @office = office
     @candidates = []
+    @open = true
   end
 
   def register_candidate(candidate_details)
     (@candidates << Candidate.new(candidate_details)).last
+  end
+
+  def open?
+    @open
   end
 end
