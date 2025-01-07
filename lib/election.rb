@@ -23,8 +23,9 @@ class Election
   end
 
   def winners
-    @races.map do |race|
-      race.winner unless race.open? || race.tie?
-    end.compact
+    @races.map { |race| race.winner unless race.open? || race.tie? }.compact
   end
 end
+
+# This refactor ensures that the Election class is simple and follows the single-responsibility principle.
+# It manages races, lists candidates, counts votes, and determines the winners of each race.
