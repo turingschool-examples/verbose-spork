@@ -12,5 +12,6 @@ class Candidate
   end
 end
 
-# This refactor ensures that the Candidate class is simple and follows the single-responsibility principle.
-# It initializes with a name, party, and votes, and has a method to increment votes.
+# This refactor - follows the single-responsibility principle.
+# initializes /name/party/votes, and has a method to increment votes.
+# diana.votes will return total votes for diana 

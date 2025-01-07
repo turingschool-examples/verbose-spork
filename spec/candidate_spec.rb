@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe Candidate do
-  it 'exists and has attributes' do
-    diana = Candidate.new({name: "Diana D", party: :democrat})
+  it 'exists and has attributes' do #test for the existence of the class and its attributes
+    diana = Candidate.new({name: "Diana D", party: :democrat})  #takes a hash with name and party keys aka details
 
     expect(diana).to be_a(Candidate)
     expect(diana.name).to eq("Diana D")
