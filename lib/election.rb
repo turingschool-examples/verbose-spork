@@ -12,4 +12,8 @@ class Election
   def add_race(race)
     @races << race
   end
+
+  def candidates
+    @races.map(&:candidates).flatten
+  end
 end
