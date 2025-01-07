@@ -23,9 +23,19 @@ class Race
         @open = false
     end
 
-    # def winner
+    def winner
+        if open == false
+            most_voted = nil
+            @candidates.each do |candidate|
+                most_voted = candidate if most_voted.nil? || candidate.votes > most_voted.votes
+            end
+            winner = most_voted
+        else
+            winner = false
+        end
 
-    # end
+        winner
+    end
 
     # def tie?
 
