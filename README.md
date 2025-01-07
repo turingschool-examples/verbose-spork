@@ -111,10 +111,10 @@ The local government agency has contacted you about compiling addition informati
 
 | Method Name | Return Value |
 | ----------- | ------------ |
-| #open?      | A boolean indicating whether the race is open or not. A race should be open by default. |
-| #close!     | Close the race (should no longer be open). |
-| #winner     | `false` if the race is still open. It should return the candidate with the most votes if not open. If there is a tie, it should return any candidate with the highest number of votes. |
-| #tie?       | A boolean indicating if two or more candidates received the highest number of votes. |
+|x #open?      | A boolean indicating whether the race is open or not. A race should be open by default. |
+|x #close!     | Close the race (should no longer be open). |
+|x #winner     | `false` if the race is still open. It should return the candidate with the most votes if not open. If there is a tie, it should return any candidate with the highest number of votes. |
+|x #tie?       | A boolean indicating if two or more candidates received the highest number of votes. |
 
 Use TDD to implement the following methods on the `Election` class.
 
