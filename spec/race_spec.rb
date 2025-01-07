@@ -41,4 +41,12 @@ describe Race do
             expect(@race.candidates).to eq([candidate1, candidate2])
         end
     end
+
+    describe '#close!' do
+        it 'can close' do
+            @race.close!
+            
+            expect(@race.open?).to eq(false)
+        end
+    end
 end
