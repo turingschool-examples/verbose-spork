@@ -29,4 +29,8 @@ class Race
         return winners[0] if winners.size == 1
         return winners
     end
+
+    def tie? 
+        winner.class == Array
+    end
 end
