@@ -101,8 +101,6 @@ You have been contacted by the local government to create a program that helps t
 | #candidates | An array of all `Candidate` objects in the election. |
 | #vote_counts | A hash with each candidate's name as a key and their count of votes as the value. |
 
-
-
 ## Iteration 4
 
 Use TDD to implement the following methods on the `Race` class.
@@ -123,4 +121,3 @@ Additionally, the local government would like you to expand the information they
 | Method Name | Return Value |
 | ----------- | ------------ |
 | #winners    | An array of the `Candidate` objects that represents the winner from each race. If the race is a tie or is still open, no winner should be returned for that race. |
-
