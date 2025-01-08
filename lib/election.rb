@@ -18,9 +18,7 @@ class Election
   end
 
   def vote_counts
-    counts = {}
-    candidates.each { |candidate| counts[candidate.name] = candidate.votes }
-    counts
+    candidates.each_with_object({}) { |candidate, counts| counts[candidate.name] = candidate.votes }
   end
 
   def winners
